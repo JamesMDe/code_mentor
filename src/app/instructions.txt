@@ -1,0 +1,18 @@
+A login screen: 
+with 
+
+A Title on the top 
+Two fields:
+Email 
+Apply client side validation to check if email format is fine
+Password
+Apply validation to check if it contains alphabet and numbers with minimum length of 6 characters
+Button (Submit)
+Forgetpassword
+When click on the forget password you will have a view with 
+Field email with same validation 
+Submit Button
+
+Clicking on submit will start a loading for 200ms and then print success. 
+
+Button will be disable until all the validations are passed.

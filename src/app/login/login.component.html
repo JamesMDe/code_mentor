@@ -1,0 +1,20 @@
+<h1>Welcome! Please Log In</h1>
+
+<form class="login" [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="input-field">
+    <label>Email: </label>
+    <input type="text" formControlName="email" />
+    <!-- <div *ngIf="loginForm.controls.email.invalid"></div> -->
+  </div>
+
+  <div class="input-field">
+    <label>Password: </label>
+    <input type="password" formControlName="password" #password />
+  </div>
+
+  <button type="submit">Login</button>
+
+  <a routerLink="forgot-password">Forgot Password?</a>
+</form>
+
+<div class="loader" *ngIf="showLoader"></div>
