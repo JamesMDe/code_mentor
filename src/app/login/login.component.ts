@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MockApiService } from '../mock-api.service';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent {
 
   ngOnInit() {}
 
-  constructor(private mockApi: MockApiService, private router: Router) {}
+  constructor(private mockApi: MockApiService, private router: Router, private userService: UserService) {}
 
   public login() {
     this.showLoader = true;
@@ -30,7 +31,11 @@ export class LoginComponent {
     let password: string = this.loginForm.value.password;
 
     setTimeout(() => {
-      if (this.mockApi.credentialsValid(email, password)) {
+     const user = this.mockApi.getUser(email, password);
+    
+     if(user) {   
+        this.userService.user = { name: user!.name, email: user!.email }
+        console.log(this.userService.user)
         this.router.navigate(['welcome']);
         this.showLoader = false;
       } else {

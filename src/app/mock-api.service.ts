@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 interface User {
+  name: string;
   email: string;
   password: string;
 }
@@ -13,10 +14,12 @@ export class MockApiService {
 
   users: User[] = [
     {
+      name: "Waleed",
       email: 'waleed@email.com',
       password: '123',
     },
     {
+      name: "James",
       email: 'james@email.com',
       password: 'abc',
     },
@@ -31,13 +34,14 @@ export class MockApiService {
     return false;
   }
 
-  public credentialsValid(email: string, password: string): boolean {
+  public getUser(email: string, password: string): User | null {
     for (let user of this.users) {
       if (user.email === email && user.password === password) {
-        return true;
+        return user;
       }
     }
-    return false;
+
+    return null;
   }
 
   public changePassword(email: string, password: string): void {
