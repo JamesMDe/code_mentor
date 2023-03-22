@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface User {
   email: string;
@@ -8,7 +9,7 @@ interface User {
   providedIn: 'root',
 })
 export class MockApiService {
-  constructor() {}
+  constructor(private router: Router) {}
 
   users: User[] = [
     {
@@ -39,5 +40,11 @@ export class MockApiService {
     return false;
   }
 
-  public changePassword(): void {}
+  public changePassword(email: string, password: string): void {
+      this.users.map((user) => {
+        if (user.email === email) user.password = password;
+      });
+
+      this.router.navigate(['']);
+  }
 }

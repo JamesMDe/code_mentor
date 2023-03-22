@@ -20,15 +20,32 @@ export class ForgotPasswordComponent {
     ]),
   });
 
+  public showLoader = false;
   public emailIsValid: boolean = false;
 
   constructor(private mockApi: MockApiService) {}
 
   public emailValid(): boolean {
-    if (this.mockApi.emailExists(this.checkEmailForm.value.email)) {
-      this.emailIsValid = true;
-      return true;
-    }
+    this.showLoader = true;
+
+    setTimeout(() => {
+      if (this.mockApi.emailExists(this.checkEmailForm.value.email)) {
+        this.emailIsValid = true;
+        this.showLoader = false;
+        return true;
+      }
+
+      this.showLoader = false;
+      return false;
+    }, 2000);
+
     return false;
+  }
+
+  public changePassword() {
+    const email = this.checkEmailForm.value.email;
+    const password = this.changePasswordForm.value.password;
+
+    this.mockApi.changePassword(email, password)
   }
 }
