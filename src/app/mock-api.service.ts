@@ -26,8 +26,8 @@ export class MockApiService {
     for (let user of this.users) {
       if (user.email === email) {
         return true;
-      }
-    }
+      } 
+    } 
     return false;
   }
 

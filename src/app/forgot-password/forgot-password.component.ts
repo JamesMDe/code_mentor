@@ -33,10 +33,11 @@ export class ForgotPasswordComponent {
         this.emailIsValid = true;
         this.showLoader = false;
         return true;
+      } else {
+        alert("Please enter a valid email!");
+        this.showLoader = false;
+        return false;
       }
-
-      this.showLoader = false;
-      return false;
     }, 2000);
 
     return false;
@@ -45,7 +46,14 @@ export class ForgotPasswordComponent {
   public changePassword() {
     const email = this.checkEmailForm.value.email;
     const password = this.changePasswordForm.value.password;
-
-    this.mockApi.changePassword(email, password)
+    
+    if(email && password) {
+      this.showLoader = true;
+      setTimeout(() => {
+        this.mockApi.changePassword(email, password)
+      }, 2000)
+    } else {
+      alert("Please enter a new password!");
+    }
   }
 }
