@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MockApiService } from '../mock-api.service';
+import { MockApiService } from '../../services/mock-api.service'
 
 @Component({
   selector: 'app-forgot-password',
